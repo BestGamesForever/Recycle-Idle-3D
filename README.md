@@ -1,1 +1,1 @@
-# Recycle-Idle-3D
+# A bunch of people Bring Used Food And Vehicles to the Recycle Factory and The earn money and Happyly go away and come back. At the begining we cant handle all the in coming stuff but with the Upgrades for the Factory we earn much money
