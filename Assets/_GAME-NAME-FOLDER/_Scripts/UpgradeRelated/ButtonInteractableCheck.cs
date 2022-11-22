@@ -36,7 +36,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       {
         skillButtons[0].interactable = false;
         firstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
-        Debug.Log("1");
+
       }
     }
     else
@@ -45,7 +45,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       {
         skillButtons[0].interactable = true;
         firstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
-        Debug.Log("2");
+
       }
     }
     if (incomeValue > totalcoin)
@@ -54,7 +54,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       {
         skillButtons[1].interactable = false;
         secondButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
-        Debug.Log("3");
+
       }
     }
     else
@@ -63,7 +63,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       {
         skillButtons[1].interactable = true;
         secondButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
-        Debug.Log("4");
+
       }
     }
     if (speedValue > totalcoin)
@@ -72,7 +72,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       {
         skillButtons[2].interactable = false;
         thirdirstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
-        Debug.Log("5");
+
       }
     }
     else
@@ -81,7 +81,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       {
         skillButtons[2].interactable = true;
         thirdirstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
-        Debug.Log("6");
+
       }
     }
   }

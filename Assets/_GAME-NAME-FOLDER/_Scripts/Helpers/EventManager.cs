@@ -50,7 +50,7 @@ public class EventManager : MonoBehaviour
       icon.DOPunchScale(punch * .2f, .4f, 1, 1f).OnComplete(() => icon.localScale = Vector3.one);
     }
     correspondTransform.DOPunchScale(punch, .4f, 5, 1f).OnComplete(() => correspondTransform.localScale = Vector3.one);
-    currentTransform.DOShakeScale(2, 1f, 5, 50f, true).OnComplete(() => currentTransform.localScale = Vector3.one);
+    currentTransform.DOShakeScale(1, .5f, 5, 20f, true).OnComplete(() => currentTransform.localScale = Vector3.one);
   }
 
   public void HitEachOtherParticleFunc(ParticleSystem hitParticleSystem, bool isHealtDecrease)

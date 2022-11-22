@@ -40,7 +40,6 @@ public class PutChildInList : MonoBehaviour
   {
     if (isInteractable)
     {
-      Debug.Log("TurnOn The Alfas to 255");
       for (int i = 0; i < showImageList.Count; i++)
       {
         showImageList[i].color = imageColor[i];
@@ -52,8 +51,6 @@ public class PutChildInList : MonoBehaviour
     }
     else
     {
-      Debug.Log("TurnOff The Alfas to 45");
-
       for (int i = 0; i < showImageList.Count; i++)
       {
         showImageList[i].color = imageColorAlpha[i];

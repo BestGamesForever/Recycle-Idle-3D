@@ -116,7 +116,7 @@ public class UIScript : MonoBehaviour
     levelRewardText.text = levelReward.ToString();
     levelTextHUD.text = "LEVEL " + currentLevel;
     levelTextEndUI.text = levelTextHUD.text;
-    totalCoinsText.text = totalCoins.ToString();
+    itemCountText.text = totalCoins.ToString();
     hiddenMenuCount = 0;
   }
 

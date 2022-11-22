@@ -14,28 +14,10 @@ public class GameManager : Singleton<GameManager>
   public int currentLevelTxt = 1;
 
   [ReadOnly]
-  public int totalCoins = 300;
+  public int totalCoins = 1000000;
 
   [ReadOnly]
   public bool completedTutorial = false;
-
-  [ReadOnly]
-  public int hearthAmount = 3;
-
-  [ReadOnly]
-  public int IncomeAmount = 20;
-
-  [ReadOnly]
-  public float SpeedAmount = .1f;
-
-  [ReadOnly]
-  public int hearthCooldownSpeed = 1;
-
-  [ReadOnly]
-  public int talentCooldownSpeed = 1;
-
-  [ReadOnly]
-  public int experienceCooldownSpeed = 1;
 
   [ReadOnly]
   public int hearthUpgradeCost = 200;
@@ -82,14 +64,6 @@ public class GameManager : Singleton<GameManager>
     saveData.totalCoins = totalCoins;
     saveData.completedTutorial = completedTutorial;
 
-    saveData.tapAmount = hearthAmount;
-    saveData.IncomeAmount = IncomeAmount;
-    saveData.SpeedAmount = SpeedAmount;
-
-    saveData.hearthCooldownSpeed = hearthCooldownSpeed;
-    saveData.talentCooldownSpeed = talentCooldownSpeed;
-    saveData.experienceCooldownSpeed = experienceCooldownSpeed;
-
     saveData.hearthUpgradeCost = hearthUpgradeCost;
     saveData.incomeCots = incomeCots;
     saveData.speedCost = speedCost;
@@ -118,14 +92,6 @@ public class GameManager : Singleton<GameManager>
     currentLevelTxt = saveData.currentLevelTxt;
     totalCoins = saveData.totalCoins;
     completedTutorial = saveData.completedTutorial;
-
-    hearthAmount = saveData.tapAmount;
-    IncomeAmount = saveData.IncomeAmount;
-    SpeedAmount = saveData.SpeedAmount;
-
-    hearthCooldownSpeed = saveData.hearthCooldownSpeed;
-    talentCooldownSpeed = saveData.talentCooldownSpeed;
-    experienceCooldownSpeed = saveData.experienceCooldownSpeed;
 
     hearthUpgradeCost = saveData.hearthUpgradeCost;
     incomeCots = saveData.incomeCots;

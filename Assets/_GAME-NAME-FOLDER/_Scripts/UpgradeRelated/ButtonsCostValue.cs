@@ -57,8 +57,7 @@ public class ButtonsCostValue : MonoBehaviour
       hearthButtonClicked++;
       GameManager.Instance.totalCoins -= hearthUpgradeCost;
       totalMoneyText.text = GameManager.Instance.totalCoins.ToString();
-      Debug.Log("Cost" + speedCost);
-      Debug.Log("GameManager.Instance.totalCoins " + GameManager.Instance.totalCoins);
+
       hearthUpgradeCost += (int)(multiplier.Evaluate(hearthButtonClicked) * multiplierConst);
       hearthCostText.text = hearthUpgradeCost.ToString();
       GameManager.Instance.hearthButtonClicked = hearthButtonClicked;
@@ -69,8 +68,7 @@ public class ButtonsCostValue : MonoBehaviour
       incomeButtonClicked++;
       GameManager.Instance.totalCoins -= incomeCots;
       totalMoneyText.text = GameManager.Instance.totalCoins.ToString();
-      Debug.Log("Cost" + speedCost);
-      Debug.Log("GameManager.Instance.totalCoins " + GameManager.Instance.totalCoins);
+
       incomeCots += (int)(multiplier.Evaluate(incomeButtonClicked) * multiplierConst);
       incomeCostText.text = incomeCots.ToString();
       GameManager.Instance.incomeButtonClicked = incomeButtonClicked;
@@ -81,8 +79,7 @@ public class ButtonsCostValue : MonoBehaviour
       speedButtonClicked++;
       GameManager.Instance.totalCoins -= speedCost;
       totalMoneyText.text = GameManager.Instance.totalCoins.ToString();
-      Debug.Log("Cost" + speedCost);
-      Debug.Log("GameManager.Instance.totalCoins " + GameManager.Instance.totalCoins);
+
       speedCost += (int)(multiplier.Evaluate(speedButtonClicked) * multiplierConst);
       speedCostText.text = speedCost.ToString();
       GameManager.Instance.speedButtonClicked = speedButtonClicked;
