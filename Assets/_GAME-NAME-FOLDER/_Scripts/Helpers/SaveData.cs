@@ -8,10 +8,12 @@
   public int hearthUpgradeCost;
   public int incomeCots;
   public int speedCost;
+  public int mergeCost;
 
   public int hearthButtonClicked;
   public int incomeButtonClicked;
   public int speedButtonClicked;
+  public int mergeButtonClicked;
 
   public int IncomeIndexMultiplier;
   public int tutorialTextToShown;

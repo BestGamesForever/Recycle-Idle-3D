@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb3760b43bde5040ab491d1fd28c04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 4, z: 0.21}
+  offset: {x: 0, y: 1.25, z: 0.1}
   mLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  distance: -1.2
+  distance: -1.49
 --- !u!114 &276659926457884995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisModelMaterials: []
-  durationForDissolveComplete: 1
+  durationForDissolveComplete: 0.5
 --- !u!1 &36024909179810093
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926109895090267606}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80262791ea52f99488e283e8755aee08, type: 3}
   m_Name: 

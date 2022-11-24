@@ -5,16 +5,17 @@ using Dreamteck.Splines;
 
 public class PoolingManager : MonoBehaviour
 {
-  RoadAndSpawnManager roadAndSpawnManager;
+  public ButtonInteractableCheck mergeButtonCheck;
+  CarMergeManager roadAndSpawnManager;
   [SerializeField] private GameObject[] parents;
-  [SerializeField] private GameObject _projectilePrefab;
-  public List<GameObject> projectilePool = new List<GameObject>();
+  [SerializeField] private GameObject carPrefab;
+  GameObject createdCar;
+  public List<GameObject> carPool = new List<GameObject>();
+  public List<GameObject> tempPool = new List<GameObject>();
   [SerializeField] int poolStartSize;
-  GameObject projectile;
   Transform spawnPoints;
   [SerializeField] Vector3 offset;
-  int totalCounter;
-  int listCount;
+  public int listCount;
 
   void OnEnable()
   {
@@ -27,44 +28,51 @@ public class PoolingManager : MonoBehaviour
 
   private void SpawnACar()
   {
-    GetProjectile();
+    GetCar();
   }
 
   private void Start()
   {
     spawnPoints = FindObjectOfType<SpawnPoint>().transform;
-    roadAndSpawnManager = GetComponent<RoadAndSpawnManager>();
+    roadAndSpawnManager = GetComponent<CarMergeManager>();
     listCount = -1;
     for (int i = 0; i < poolStartSize; i++)
     {
-      projectile = Instantiate(_projectilePrefab);
-      projectilePool.Add(projectile);
-      roadAndSpawnManager.allCarsInThisList.Add(projectile.GetComponent<CarsLoopBehaviour>());
-      projectile.SetActive(true);
-      projectile.transform.GetChild(0).GetComponent<CarToCheckAtSpawn>().enabled = false;
-      totalCounter = projectilePool.Count;
-
+      createdCar = Instantiate(carPrefab);
+      carPool.Add(createdCar);
+      roadAndSpawnManager.firstCarInTheList.Add(createdCar.GetComponent<CarsLoopBehaviour>());
+      createdCar.SetActive(true);
+      createdCar.transform.GetChild(0).GetComponent<CarToCheckAtSpawn>().enabled = false;
     }
   }
-  public GameObject GetProjectile()
+  public GameObject GetCar()
   {
+    tempPool = new List<GameObject>();
     {
       listCount++;
-      projectile = projectilePool[listCount];
-      projectile.SetActive(true);
+      Debug.Log($"listCount  {listCount}");
 
       for (int i = 0; i < 1; i++)
       {
-        projectile = Instantiate(_projectilePrefab);
-        projectile.transform.position = spawnPoints.position + offset;
-        projectilePool.Add(projectile);
-        roadAndSpawnManager.allCarsInThisList.Add(projectile.GetComponent<CarsLoopBehaviour>());
-        projectile.GetComponent<CarsLoopBehaviour>().isFirstSpawn = true;
-        projectile.SetActive(true);
-        projectile.transform.SetParent(parents[0].transform);
-        projectile.GetComponent<SplineFollower>().enabled = false;
+        createdCar = Instantiate(carPrefab);
+        createdCar.transform.position = spawnPoints.position + offset;
+        carPool.Add(createdCar);
+        roadAndSpawnManager.firstCarInTheList.Add(createdCar.GetComponent<CarsLoopBehaviour>());
+        createdCar.GetComponent<CarsLoopBehaviour>().isFirstSpawn = true;
+        createdCar.SetActive(true);
+        createdCar.transform.SetParent(parents[0].transform);
+        createdCar.GetComponent<SplineFollower>().enabled = false;
       }
-      return projectile;
+
+      foreach (GameObject item in carPool)
+      {
+        if (item.activeInHierarchy)
+        {
+          tempPool.Add(item);
+        }
+      }
+      mergeButtonCheck.CheckMergeButtonWhenReachThreeCars(tempPool.Count);
+      return createdCar;
     }
   }
 

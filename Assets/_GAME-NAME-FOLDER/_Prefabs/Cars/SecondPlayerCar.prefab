@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 778165860536148193}
+  - component: {fileID: 2828101558645659588}
+  - component: {fileID: 3912761951618452716}
   m_Layer: 0
   m_Name: car2
   m_TagString: Untagged
@@ -34,6 +36,37 @@ Transform:
   m_Father: {fileID: 3705448102775298126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2828101558645659588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110137077804808795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb3760b43bde5040ab491d1fd28c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 1.25, z: 0.1}
+  mLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  distance: -1.49
+--- !u!114 &3912761951618452716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110137077804808795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9777ba2d31d2ecb49b5deaf795b28cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisModelMaterials: []
+  durationForDissolveComplete: 0.5
 --- !u!1 &3705448102775298124
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,10 +80,10 @@ GameObject:
   - component: {fileID: 3705448102775298121}
   - component: {fileID: 3705448102775298122}
   - component: {fileID: 3705448102775298123}
+  - component: {fileID: 3705448102775298118}
   - component: {fileID: 3705448102775298117}
   - component: {fileID: 3705448102775298116}
-  - component: {fileID: 3705448102775298118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SecondPlayerCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,6 +867,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carType: 1
+  isFirstSpawn: 0
+  offset: {x: 0, y: -6, z: 0}
+--- !u!114 &3705448102775298118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3705448102775298124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac594b0fd1ee104c9fd8f6a2fa52569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
 --- !u!54 &3705448102775298117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -863,20 +911,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3705448102775298118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3705448102775298124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac594b0fd1ee104c9fd8f6a2fa52569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 1
-  spawnPoint: {fileID: 0}
 --- !u!1 &4347124326769444901
 GameObject:
   m_ObjectHideFlags: 0

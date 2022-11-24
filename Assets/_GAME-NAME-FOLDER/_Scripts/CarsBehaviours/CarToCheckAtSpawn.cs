@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Splines;
 
+
 public class CarToCheckAtSpawn : MonoBehaviour
 {
+
   public Vector3 offset;
   private bool m_Started;
   public LayerMask mLayerMask;
@@ -17,7 +17,7 @@ public class CarToCheckAtSpawn : MonoBehaviour
   void OnEnable()
   {
     m_Started = true;
-    timer = 1f;
+    timer = .6f;
     parentObject = transform.parent;
     targetPosition = parentObject.position - new Vector3(0, .5f, 0);
   }
@@ -62,8 +62,7 @@ public class CarToCheckAtSpawn : MonoBehaviour
   /*  void OnDrawGizmos()
    {
      Gizmos.color = Color.red;
-     if (m_Started)
-       Gizmos.DrawWireCube(transform.position + offset * distance, transform.localScale + offset);
+     Gizmos.DrawWireCube(transform.position + offset * distance, transform.localScale + offset);
    } */
 }
 

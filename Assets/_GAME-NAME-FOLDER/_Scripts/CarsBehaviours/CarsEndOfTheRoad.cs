@@ -10,6 +10,8 @@ public class CarsEndOfTheRoad : MonoBehaviour
   [SerializeField] float duration;
   Transform spawnPoint;
   public static event Action OnSpeedAtTheStart = delegate { };
+  public static event Action onPlatformMoving = delegate { };
+  GameObject tempPlatform;
   void OnEnable()
   {
     splineFollower = GetComponent<SplineFollower>();
@@ -26,6 +28,7 @@ public class CarsEndOfTheRoad : MonoBehaviour
     float y = 0;
     float yRot = transform.eulerAngles.y;
     Vector3 startPos = transform.position;
+    onPlatformMoving?.Invoke();
     while (elapsedTime < duration)
     {
       elapsedTime += Time.deltaTime;
@@ -36,7 +39,6 @@ public class CarsEndOfTheRoad : MonoBehaviour
     }
     yield return new WaitForEndOfFrame();
     splineFollower.SetPercent(0);
-
     splineFollower.enabled = true;
     OnSpeedAtTheStart?.Invoke();
 

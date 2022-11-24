@@ -20,22 +20,26 @@ public class GameManager : Singleton<GameManager>
   public bool completedTutorial = false;
 
   [ReadOnly]
-  public int hearthUpgradeCost = 200;
+  public int newCarCost = 200;
 
   [ReadOnly]
   public int incomeCots = 200;
 
   [ReadOnly]
-  public int speedCost = 200;
+  public int newRoadCost = 200;
+  [ReadOnly]
+  public int mergeCost = 200;
 
   [ReadOnly]
-  public int hearthButtonClicked = 1;
+  public int addCarButtonClicked = 1;
 
   [ReadOnly]
   public int incomeButtonClicked = 1;
 
   [ReadOnly]
-  public int speedButtonClicked = 1;
+  public int addRoadButtonClicked = 1;
+  [ReadOnly]
+  public int mergeButtonClicked = 1;
 
   [ReadOnly]
   public int IncomeIndexMultiplier = 10;
@@ -64,13 +68,17 @@ public class GameManager : Singleton<GameManager>
     saveData.totalCoins = totalCoins;
     saveData.completedTutorial = completedTutorial;
 
-    saveData.hearthUpgradeCost = hearthUpgradeCost;
+    saveData.hearthUpgradeCost = newCarCost;
     saveData.incomeCots = incomeCots;
-    saveData.speedCost = speedCost;
+    saveData.speedCost = newRoadCost;
+    saveData.mergeCost = mergeCost;
 
-    saveData.hearthButtonClicked = hearthButtonClicked;
+    saveData.hearthButtonClicked = addCarButtonClicked;
     saveData.incomeButtonClicked = incomeButtonClicked;
-    saveData.speedButtonClicked = speedButtonClicked;
+    saveData.speedButtonClicked = addRoadButtonClicked;
+    saveData.mergeButtonClicked = mergeButtonClicked;
+
+
     saveData.IncomeIndexMultiplier = IncomeIndexMultiplier;
 
     saveData.tutorialTextToShown = tutorialTextToShown;
@@ -93,13 +101,15 @@ public class GameManager : Singleton<GameManager>
     totalCoins = saveData.totalCoins;
     completedTutorial = saveData.completedTutorial;
 
-    hearthUpgradeCost = saveData.hearthUpgradeCost;
+    newCarCost = saveData.hearthUpgradeCost;
     incomeCots = saveData.incomeCots;
-    speedCost = saveData.speedCost;
+    newRoadCost = saveData.speedCost;
+    mergeCost = saveData.mergeCost;
 
-    hearthButtonClicked = saveData.hearthButtonClicked;
+    addCarButtonClicked = saveData.hearthButtonClicked;
     incomeButtonClicked = saveData.incomeButtonClicked;
-    speedButtonClicked = saveData.speedButtonClicked;
+    addRoadButtonClicked = saveData.speedButtonClicked;
+    mergeButtonClicked = saveData.mergeButtonClicked;
 
     IncomeIndexMultiplier = saveData.IncomeIndexMultiplier;
 

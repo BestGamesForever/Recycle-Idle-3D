@@ -20,13 +20,13 @@ public class CarsLoopBehaviour : BaseCarBehaviour
   IEnumerator StartCarLoop;
   public Vector3 offset;
   float duration;
+  int layerMask;
   private void OnEnable()
   {
     splineFollower = GetComponent<SplineFollower>();
     splineFollower.SetPercent(0);
+    layerMask = LayerMask.NameToLayer("FirstCar");
     duration = 1;
-
-    // StartCarLoop = StartCarLooping();
   }
   private void Start()
   {
@@ -36,10 +36,6 @@ public class CarsLoopBehaviour : BaseCarBehaviour
 
   private void OnTriggerEnter(Collider other)
   {
-    if (other == null)
-    {
-      Debug.Log($"other");
-    }
     ICheckPoints checkPoints = other.GetComponent<ICheckPoints>();
     IEndTrigger endPoint = other.GetComponent<IEndTrigger>();
     if (checkPoints != null)
@@ -62,28 +58,14 @@ public class CarsLoopBehaviour : BaseCarBehaviour
       carsEndOfTheRoad.ReachEndOfTheRoad();
     }
   }
-  /* 
-    private void OnTriggerStay(Collider other)
-    {
-      ICarsToCheck checkPoints = other.GetComponent<ICarsToCheck>();
-      if (checkPoints != null)
-      {
-        Debug.Log($"other  {other.gameObject}");
 
-        return;
+  private void OnTriggerStay(Collider other)
+  {
 
-      }
-      else
-      {
-        StartCoroutine(StartCarLooping());
-      }
-    }
-
-    IEnumerator StartCarLooping()
-    {
-      yield return new WaitForSeconds(duration);
-      GetComponent<SplineFollower>().enabled = true;
-      transform.GetChild(0).GetComponent<Collider>().enabled = false;
-    } */
-
+    /*  if (other.gameObject.layer == layerMask)
+     {
+       Debug.Log($"other  {other.gameObject.name}");
+       GetComponent<RoadSlopeBehaviour>().enabled = false;
+     } */
+  }
 }

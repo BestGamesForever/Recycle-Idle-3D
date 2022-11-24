@@ -8,7 +8,9 @@ public class ButtonInteractableCheck : MonoBehaviour
 
   public PutChildInList firstButtonlistOfImagesAndTextMeshes;
   public PutChildInList secondButtonlistOfImagesAndTextMeshes;
-  public PutChildInList thirdirstButtonlistOfImagesAndTextMeshes;
+  public PutChildInList thirdButtonlistOfImagesAndTextMeshes;
+  public PutChildInList fourthButtonlistOfImagesAndTextMeshes;//MergeButton
+
   private void OnEnable()
   {
     EventManager.onButtonCheck += ButtonInteractableChecks;
@@ -20,17 +22,20 @@ public class ButtonInteractableCheck : MonoBehaviour
   }
 
   public Button[] skillButtons; //0 mana 1 talent 2 speed
-  int hearthUpgradeCost;
-  int incomeValue;
-  int speedValue;
+  int newCarCost;
+  int incomeCost;
+  int newRoadCost;
+  int mergeCost;
 
   void ButtonInteractableChecks()
   {
-    hearthUpgradeCost = GameManager.Instance.hearthUpgradeCost;
-    incomeValue = GameManager.Instance.incomeCots;
-    speedValue = GameManager.Instance.speedCost;
+    newCarCost = GameManager.Instance.newCarCost;
+    incomeCost = GameManager.Instance.incomeCots;
+    newRoadCost = GameManager.Instance.newRoadCost;
+    mergeCost = GameManager.Instance.mergeCost;
     int totalcoin = GameManager.Instance.totalCoins;
-    if (hearthUpgradeCost > totalcoin)
+
+    if (newCarCost > totalcoin)
     {
       if (skillButtons[0] != null)
       {
@@ -48,7 +53,7 @@ public class ButtonInteractableCheck : MonoBehaviour
 
       }
     }
-    if (incomeValue > totalcoin)
+    if (incomeCost > totalcoin)
     {
       if (skillButtons[1] != null)
       {
@@ -66,12 +71,12 @@ public class ButtonInteractableCheck : MonoBehaviour
 
       }
     }
-    if (speedValue > totalcoin)
+    if (newRoadCost > totalcoin)
     {
       if (skillButtons[2] != null)
       {
         skillButtons[2].interactable = false;
-        thirdirstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
+        thirdButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
 
       }
     }
@@ -80,7 +85,46 @@ public class ButtonInteractableCheck : MonoBehaviour
       if (skillButtons[2] != null)
       {
         skillButtons[2].interactable = true;
-        thirdirstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
+        thirdButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
+
+      }
+    }
+    if (newRoadCost > totalcoin)
+    {
+      MerheButtonInteractability();
+    }
+  }
+
+  public void CheckMergeButtonWhenReachThreeCars(int listCounts)
+  {
+
+    if (listCounts < 3)
+    {
+      skillButtons[3].gameObject.SetActive(false);
+    }
+    else
+    {
+      skillButtons[3].gameObject.SetActive(true);
+    }
+
+  }
+
+  void MerheButtonInteractability()
+  {
+    if (skillButtons[3] != null)
+    {
+      {
+        skillButtons[3].interactable = false;
+        fourthButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
+
+      }
+    }
+    else
+    {
+      if (skillButtons[3] != null)
+      {
+        skillButtons[3].interactable = true;
+        fourthButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
 
       }
     }
