@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     EventSystem.current.RaycastAll(eventDataPosition, results);
     for (int i = 0; i < results.Count; i++)
     {
-      Debug.Log($"GameObject  {results[i].gameObject.name}");
+      // Debug.Log($"GameObject  {results[i].gameObject.name}");
     }
     return results.Count > 0;
   }

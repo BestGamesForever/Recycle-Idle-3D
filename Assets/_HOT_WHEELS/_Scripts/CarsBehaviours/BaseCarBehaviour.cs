@@ -21,7 +21,7 @@ public abstract class BaseCarBehaviour : MonoBehaviour
 
   public virtual void GiveMoney(int amount)
   {
-    Debug.Log($"GameObject  {gameObject}");
+
     totalMoney = GameManager.Instance.totalCoins + amount;
     GameManager.Instance.totalCoins = totalMoney;
     EventManager.instance.OnButtonCheckFunc();

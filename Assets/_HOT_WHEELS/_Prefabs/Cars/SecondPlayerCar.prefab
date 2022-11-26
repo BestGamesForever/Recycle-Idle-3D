@@ -43,7 +43,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110137077804808795}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddb3760b43bde5040ab491d1fd28c04a, type: 3}
   m_Name: 
@@ -98,8 +98,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3705448102775298124}
-  m_LocalRotation: {x: 0.045985375, y: -0.6421137, z: -0.015698083, w: 0.76506793}
-  m_LocalPosition: {x: 9.27504, y: 74.64776, z: 2.3899536}
+  m_LocalRotation: {x: 0.04586472, y: -0.65542257, z: -0.021483285, w: 0.7535624}
+  m_LocalPosition: {x: 7.4432073, y: 74.54552, z: 2.7351086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3705448102775298124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ddc1a2536715a24095c464a2c394d5d, type: 3}
   m_Name: 
@@ -746,19 +746,19 @@ MonoBehaviour:
   targetRigidbody2D: {fileID: 0}
   targetTransform: {fileID: 3705448102775298126}
   _result:
-    position: {x: 9.275144, y: 74.44847, z: 2.37306}
-    up: {x: -0.0005217269, y: 0.99642605, z: 0.08446857}
-    forward: {x: -0.983965, y: -0.05020396, z: 0.17115064}
+    position: {x: 7.4433117, y: 74.34639, z: 2.7164102}
+    up: {x: -0.0005217809, y: 0.99561834, z: 0.09349175}
+    forward: {x: -0.9897723, y: -0.04096251, z: 0.13663512}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
-    percent: 0
+    percent: 0.028089051270280045
   _finalResult:
-    position: {x: 9.275144, y: 74.44847, z: 2.37306}
-    up: {x: -0.0005217269, y: 0.99642605, z: 0.08446857}
-    forward: {x: -0.983965, y: -0.05020396, z: 0.17115064}
+    position: {x: 7.4433117, y: 74.34639, z: 2.7164102}
+    up: {x: -0.0005217809, y: 0.99561834, z: 0.09349175}
+    forward: {x: -0.9897723, y: -0.04096251, z: 0.13663512}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
-    percent: 0
+    percent: 0.028089051270280045
   wrapMode: 0
   followMode: 0
   autoStartPosition: 0
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3705448102775298124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80262791ea52f99488e283e8755aee08, type: 3}
   m_Name: 
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3705448102775298124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ee47d25138a792478ee25e082e47dd7, type: 3}
   m_Name: 

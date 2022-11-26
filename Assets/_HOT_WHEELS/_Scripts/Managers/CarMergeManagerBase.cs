@@ -7,9 +7,14 @@ using System;
 
 public abstract class CarMergeManagerBase : MonoBehaviour
 {
+  Transform spawnPoints;
   public Transform[] carsParents;
   public PoolingManager poolManager;
   public static event Action effectPlay;
+  void OnEnable()
+  {
+    spawnPoints = FindObjectOfType<SpawnPoint>().transform;
+  }
   public virtual void MergeCarsWhenThree(List<CarsLoopBehaviour> CarInTheList, List<CarsLoopBehaviour> temp, MergePositions mergePositions, int index, GameObject nextCar, List<CarsLoopBehaviour> newCar, int parentIndex)
   {
     temp = new List<CarsLoopBehaviour>();
@@ -29,21 +34,31 @@ public abstract class CarMergeManagerBase : MonoBehaviour
       temp[i].transform.DOScale(new Vector3(.1f, .1f, .1f), 1).SetDelay(1);
       temp[i].GetComponent<Rotate>().enabled = true;
     }
-    StartCoroutine(Test(temp, nextCar, newCar, parentIndex));
+    StartCoroutine(NewCarSpawn(temp, nextCar, newCar, parentIndex));
   }
-  IEnumerator Test(List<CarsLoopBehaviour> CarInTheList, GameObject nextCar, List<CarsLoopBehaviour> nextCarList, int parentIndex)
+  IEnumerator NewCarSpawn(List<CarsLoopBehaviour> CarInTheList, GameObject nextCar, List<CarsLoopBehaviour> nextCarList, int parentIndex)
   {
     yield return new WaitForSeconds(2f);
     effectPlay?.Invoke();
     yield return new WaitForSeconds(.1f);
     GameObject nextCarGo = Instantiate(nextCar);
+
+    nextCarGo.transform.DOMove(spawnPoints.position, .75f).SetDelay(.5f).OnComplete(() => OnCompleteSpawn(nextCarGo));
     nextCarGo.transform.SetParent(carsParents[parentIndex]);
     nextCarGo.transform.localPosition = new Vector3(-480.5f, -347.5f, -20f);
-    nextCarGo.GetComponent<SplineFollower>().enabled = false;
     nextCarList.Add(nextCarGo.GetComponent<CarsLoopBehaviour>());
     for (int i = 0; i < 3; i++)
     {
       CarInTheList[i].gameObject.SetActive(false);
     }
+  }
+
+  void OnCompleteSpawn(GameObject nextCarGo)
+  {
+    Debug.Log($"GameObject  {gameObject}");
+    nextCarGo.GetComponent<SplineFollower>().enabled = true;
+    nextCarGo.GetComponent<CarsLoopBehaviour>().enabled = true;
+    nextCarGo.GetComponent<RoadSlopeBehaviour>().enabled = true;
+    nextCarGo.transform.GetChild(0).GetComponent<CarToCheckAtSpawn>().enabled = true;
   }
 }

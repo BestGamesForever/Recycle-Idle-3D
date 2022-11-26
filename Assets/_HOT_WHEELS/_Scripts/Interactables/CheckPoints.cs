@@ -12,20 +12,24 @@ public class CheckPoints : MonoBehaviour, ICheckPoints
   public TextMeshProUGUI moneyText;
   Vector3 startPos;
   Color32 color;
+  Tween dotWeen;
+  IEnumerator RemoveFromLists;
   void Awake()
   {
     startPos = moneyImage.transform.position;
+    RemoveFromLists = RemoveFromList();
   }
   public void SpawnMoney()
   {
-    DOTween.Kill(transform);
 
+    dotWeen.Complete();
+    dotWeen.Kill();
+    StopCoroutine(RemoveFromLists);
+    RemoveFromLists = RemoveFromList();
     moneyImage.transform.position = startPos;
-    color = moneyImage.color;
-    color.a = 255;
-    moneyImage.color = color;
-    moneyText.color = color;
-    StartCoroutine(RemoveFromList());
+    moneyImage.color = new Color32(255, 255, 255, 255);
+    moneyText.color = new Color32(255, 255, 255, 255);
+    StartCoroutine(RemoveFromLists);
   }
 
   IEnumerator RemoveFromList()
@@ -33,9 +37,11 @@ public class CheckPoints : MonoBehaviour, ICheckPoints
     yield return null;
     transform.GetComponent<Collider>().enabled = false;
     moneyObj.SetActive(true);
-    moneyImage.transform.DOMoveY((startPos.y + 50), .5f).OnComplete(() => transform.GetComponent<Collider>().enabled = true);
-    moneyImage.DOFade(0, 1);
-    moneyText.DOFade(0, 1);
+    moneyImage.DOFade(1, .01f);
+    moneyText.DOFade(1, .01f);
+    dotWeen = moneyImage.transform.DOMoveY((startPos.y + 50), .5f).OnComplete(() => transform.GetComponent<Collider>().enabled = true);
+    dotWeen = moneyImage.DOFade(0, 1f);
+    dotWeen = moneyText.DOFade(0, 1f);
 
   }
   public void DisableMoneyImage()

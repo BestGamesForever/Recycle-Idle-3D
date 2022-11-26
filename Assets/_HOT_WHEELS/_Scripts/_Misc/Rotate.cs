@@ -14,7 +14,7 @@ public class Rotate : MonoBehaviour
   void OnEnable()
   {
     waitForSeconds = new WaitForSeconds(.5f);
-    tempSpeed = Random.Range(50, 250);
+    tempSpeed = Random.Range(150, 300);
     StartCoroutine(Rotator());
   }
   IEnumerator Rotator()

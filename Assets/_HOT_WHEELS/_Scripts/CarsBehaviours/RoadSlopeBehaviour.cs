@@ -4,6 +4,7 @@ using System;
 
 public class RoadSlopeBehaviour : MonoBehaviour
 {
+  int layerMask;
   Transform fasterEffect;
   SplineFollower follower;
   public float speed = 10f;
@@ -20,11 +21,15 @@ public class RoadSlopeBehaviour : MonoBehaviour
   private float brakeTime = 0f;
   private float brakeForce = 0f;
   private float addForce = 0f;
-  int multiplier;
+  float multiplier;
+
+  Ray ray;
+  RaycastHit hitInfo;
 
   void OnEnable()
   {
     CarsEndOfTheRoad.OnSpeedAtTheStart += SpeedAtTheStart;
+    layerMask = LayerMask.NameToLayer("FirstCar");
   }
   void OnDisable()
   {
@@ -45,6 +50,7 @@ public class RoadSlopeBehaviour : MonoBehaviour
 
   void Update()
   {
+
     float dot = Vector3.Dot(this.transform.forward, Vector3.down);
     float dotPercent = Mathf.Lerp(-slopeRange / 90f, slopeRange / 90f, (dot + 1f) / 2f);
     speed -= Time.deltaTime * frictionForce * (1f - brakeForce);
@@ -71,6 +77,19 @@ public class RoadSlopeBehaviour : MonoBehaviour
       multiplier = 1;
       fasterEffect.gameObject.SetActive(false);
     }
+    ray = new Ray(transform.position, transform.forward);
+    if (Physics.Raycast(ray, out hitInfo, 2))
+    {
+      if (hitInfo.collider.gameObject.layer == layerMask)
+      {
+        multiplier *= .1f;
+      }
+    }
+    else
+    {
+      multiplier *= 1;
+    }
+    Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
     follower.followSpeed = speed * multiplier;
     follower.followSpeed *= (1f - brakeForce);
     if (brakeTime > Time.time) brakeForce = Mathf.MoveTowards(brakeForce, 1f, Time.deltaTime * brakeSpeed);

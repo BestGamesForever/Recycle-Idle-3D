@@ -24,7 +24,7 @@ public class CarsLoopBehaviour : BaseCarBehaviour
   private void OnEnable()
   {
     splineFollower = GetComponent<SplineFollower>();
-    splineFollower.SetPercent(0);
+    splineFollower.SetPercent(0f);
     layerMask = LayerMask.NameToLayer("FirstCar");
     duration = 1;
   }
