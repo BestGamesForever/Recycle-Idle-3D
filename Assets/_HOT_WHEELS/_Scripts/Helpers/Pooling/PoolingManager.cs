@@ -19,11 +19,11 @@ public class PoolingManager : MonoBehaviour
 
   void OnEnable()
   {
-    SelectSkills.SpawnFirstCar += SpawnACar;
+    SelectSkills.spawnFirstCar += SpawnACar;
   }
   void OnDisable()
   {
-    SelectSkills.SpawnFirstCar += SpawnACar;//SelectSkills Action
+    SelectSkills.spawnFirstCar += SpawnACar;//SelectSkills Action
   }
 
   private void SpawnACar()
