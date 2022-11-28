@@ -18,6 +18,8 @@ class SaveData
   public int speedButtonClicked;
   public int mergeButtonClicked;
 
-  public int IncomeIndexMultiplier;
-  public int tutorialTextToShown;
+  public int firstCarListCount;
+  public int secondCarListCount;
+  public int thirdCarListCount;
+
 }

@@ -9,39 +9,38 @@ public class GameManager : Singleton<GameManager>
   public int currentLevel = 1;
   [ReadOnly]
   public int currentLevelTxt = 1;
+  public int firstCarListCount = 0;
+  public int secondCarListCount = 0;
+  public int thirdCarListCount = 0;
 
   [ReadOnly]
-  public int totalCoins = 1000000;
+  public int totalCoins = 2500;//2500;
 
   [ReadOnly]
   public bool completedTutorial = false;
 
   [ReadOnly]
-  public int newCarCost = 200;
+  public int newCarCost = 500;
 
   [ReadOnly]
-  public int incomeCots = 200;
+  public int incomeCots = 2000;
 
   [ReadOnly]
-  public int newRoadCost = 200;
+  public int newRoadCost = 2000;
   [ReadOnly]
-  public int mergeCost = 200;
+  public int mergeCost = 2000;
 
   [ReadOnly]
-  public int addCarButtonClicked = 1;
+  public int addCarButtonClicked = 0;
 
   [ReadOnly]
-  public int incomeButtonClicked = 1;
+  public int incomeButtonClicked = 0;
 
   [ReadOnly]
-  public int addRoadButtonClicked = 1;
+  public int addRoadButtonClicked = 0;
   [ReadOnly]
-  public int mergeButtonClicked = 1;
+  public int mergeButtonClicked = 0;
 
-  [ReadOnly]
-  public int IncomeIndexMultiplier = 10;
-  [ReadOnly]
-  public int tutorialTextToShown = 0;
 
   SaveData saveData = new SaveData();
 
@@ -79,10 +78,9 @@ public class GameManager : Singleton<GameManager>
     saveData.speedButtonClicked = addRoadButtonClicked;
     saveData.mergeButtonClicked = mergeButtonClicked;
 
-
-    saveData.IncomeIndexMultiplier = IncomeIndexMultiplier;
-
-    saveData.tutorialTextToShown = tutorialTextToShown;
+    saveData.firstCarListCount = firstCarListCount;
+    saveData.secondCarListCount = secondCarListCount;
+    saveData.thirdCarListCount = thirdCarListCount;
 
     byte[] bytes = SerializationUtility.SerializeValue(saveData, DataFormat.Binary);
     File.WriteAllBytes(filePath, bytes);
@@ -112,9 +110,9 @@ public class GameManager : Singleton<GameManager>
     addRoadButtonClicked = saveData.speedButtonClicked;
     mergeButtonClicked = saveData.mergeButtonClicked;
 
-    IncomeIndexMultiplier = saveData.IncomeIndexMultiplier;
-
-    tutorialTextToShown = saveData.tutorialTextToShown;
+    firstCarListCount = saveData.firstCarListCount;
+    secondCarListCount = saveData.secondCarListCount;
+    thirdCarListCount = saveData.thirdCarListCount;
   }
 
   [Button]

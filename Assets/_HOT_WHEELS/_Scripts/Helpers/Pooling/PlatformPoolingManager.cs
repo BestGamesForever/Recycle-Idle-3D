@@ -10,18 +10,28 @@ public class PlatformPoolingManager : MonoBehaviour
   GameObject platformItself;
   Transform spawnPoints;
   [SerializeField] Vector3 offset;
+  [SerializeField] Vector3[] parentPositions;
   int totalCounter;
-
+  int thisIndex;
 
   void OnEnable()
   {
     totalCounter = -1;
+    thisIndex = GameManager.Instance.addRoadButtonClicked;
     poolingList = new List<GameObject>();
     CarsEndOfTheRoad.onPlatformMoving += SpawnThePlatform;
+    ButtonsCostValue.addANewRoad += PlatformParentPosition;
   }
   void OnDisable()
   {
     CarsEndOfTheRoad.onPlatformMoving -= SpawnThePlatform;//SelectSkills Action
+    ButtonsCostValue.addANewRoad -= PlatformParentPosition;
+  }
+
+  public void PlatformParentPosition()
+  {
+    int index = GameManager.Instance.addRoadButtonClicked;
+    platformParent.transform.position = parentPositions[index];
   }
 
   private void SpawnThePlatform()
@@ -31,12 +41,14 @@ public class PlatformPoolingManager : MonoBehaviour
 
   private void Start()
   {
-
+    platformParent.transform.position = parentPositions[thisIndex];
+    platformParent.SetActive(true);
     spawnPoints = FindObjectOfType<SpawnPoint>().transform;
     for (int i = 0; i < poolStartSize; i++)
     {
       platformItself = Instantiate(platformPrefab);
       platformItself.transform.SetParent(platformParent.transform);
+      platformItself.transform.localPosition = Vector3.zero;
       platformItself.SetActive(false);
       poolingList.Add(platformItself);
     }

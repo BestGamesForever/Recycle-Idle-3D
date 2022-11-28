@@ -7,11 +7,12 @@ using System;
 
 public abstract class CarMergeManagerBase : MonoBehaviour
 {
+  public CarMergeManager carMergeManager;
   Transform spawnPoints;
   public Transform[] carsParents;
   public PoolingManager poolManager;
   public static event Action effectPlay;
-  void OnEnable()
+  void Start()
   {
     spawnPoints = FindObjectOfType<SpawnPoint>().transform;
   }
@@ -51,6 +52,7 @@ public abstract class CarMergeManagerBase : MonoBehaviour
     {
       CarInTheList[i].gameObject.SetActive(false);
     }
+    carMergeManager.ListCarsReferences();
   }
 
   void OnCompleteSpawn(GameObject nextCarGo)
@@ -60,5 +62,23 @@ public abstract class CarMergeManagerBase : MonoBehaviour
     nextCarGo.GetComponent<CarsLoopBehaviour>().enabled = true;
     nextCarGo.GetComponent<RoadSlopeBehaviour>().enabled = true;
     nextCarGo.transform.GetChild(0).GetComponent<CarToCheckAtSpawn>().enabled = true;
+  }
+
+  public IEnumerator SecondCarInstantiate(GameObject nextCar, List<CarsLoopBehaviour> nextCarList, int parentIndex)
+  {
+    for (int i = 0; i < GameManager.Instance.secondCarListCount; i++)
+    {
+      if (GameManager.Instance.secondCarListCount > 0)
+      {
+        GameObject nextCarGo = Instantiate(nextCar);
+        nextCarGo.transform.DOMove(spawnPoints.position, .1f).SetDelay(.5f).OnComplete(() => OnCompleteSpawn(nextCarGo));
+        nextCarGo.transform.SetParent(carsParents[parentIndex]);
+        nextCarList.Add(nextCarGo.GetComponent<CarsLoopBehaviour>());
+        carMergeManager.ListCarsReferences();
+        yield return new WaitForSeconds(.5f);
+      }
+
+    }
+
   }
 }

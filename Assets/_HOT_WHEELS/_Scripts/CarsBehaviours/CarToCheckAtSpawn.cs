@@ -59,10 +59,10 @@ public class CarToCheckAtSpawn : MonoBehaviour
       }
     }
   }
-  /*  void OnDrawGizmos()
-   {
-     Gizmos.color = Color.red;
-     Gizmos.DrawWireCube(transform.position + offset * distance, transform.localScale + offset);
-   } */
+  /*   void OnDrawGizmos()
+    {
+      Gizmos.color = Color.red;
+      Gizmos.DrawWireCube(transform.position + offset * distance, transform.localScale + offset);
+    } */
 }
 

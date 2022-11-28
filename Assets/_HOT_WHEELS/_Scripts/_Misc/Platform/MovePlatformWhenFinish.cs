@@ -6,20 +6,23 @@ public class MovePlatformWhenFinish : MonoBehaviour
 {
   WaitForSeconds waitForSeconds;
   [SerializeField] float duration;
-  [SerializeField] Vector3 offset;
+  [SerializeField] Vector3[] offset;
   Transform spawnPoint;
   Vector3 startPoint;
   void OnEnable()
   {
     CarsEndOfTheRoad.onPlatformMoving += MovePlatformInTheCarsEnd;
   }
-  void Start()
+  IEnumerator Start()
   {
-    waitForSeconds = new WaitForSeconds(.2f);
+    waitForSeconds = new WaitForSeconds(.05f);
+    yield return waitForSeconds;
     spawnPoint = FindObjectOfType<SpawnPoint>().transform;
-    startPoint = transform.position;
+    Debug.Log($"spawnPoint  {spawnPoint.transform.parent.name}");
+    startPoint = transform.localPosition;
 
   }
+
   void OnDisable()
   {
     CarsEndOfTheRoad.onPlatformMoving -= MovePlatformInTheCarsEnd;
@@ -31,18 +34,18 @@ public class MovePlatformWhenFinish : MonoBehaviour
 
   IEnumerator MovePlatform()
   {
+
     float elapsedTime = 0;
-    Vector3 startPos = transform.position;
+    Vector3 startPos = transform.localPosition;
     while (elapsedTime < duration)
     {
       elapsedTime += Time.deltaTime;
-      transform.position = Vector3.Lerp(startPos, spawnPoint.position + offset, elapsedTime / duration);
+      transform.localPosition = Vector3.Lerp(startPos, spawnPoint.localPosition + offset[GameManager.Instance.addRoadButtonClicked], elapsedTime / duration);
       yield return null;
     }
     yield return waitForSeconds;
-    transform.position = startPoint;
+    transform.localPosition = startPoint;
     gameObject.SetActive(false);
-
   }
 }
 

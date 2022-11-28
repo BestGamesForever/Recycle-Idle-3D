@@ -8,7 +8,8 @@ using TMPro;
 public class SelectSkills : MonoBehaviour
 {
   public static event Action spawnFirstCar = delegate { };
-  public static event Action addANewRoad = delegate { };
+
+
   public int increaseIncomeAmount;
   public float increaseSpeedAmount;
   public Button[] uibuttons;
@@ -26,11 +27,6 @@ public class SelectSkills : MonoBehaviour
     EventManager.instance.OnButtonCheckFunc();
   }
 
-  void OnEnable()
-  {
-
-  }
-
   public void SpawnANewCar()
   {
     spawnFirstCar?.Invoke();
@@ -41,13 +37,11 @@ public class SelectSkills : MonoBehaviour
   public void IncreaseIncome()
   {
     EventManager.instance.ButtonAndCorrespondComponentAnim(uibuttons[1].transform, null, correspondTransforms[1], currentAmountText[1]);
-    var text = GameManager.Instance.IncomeIndexMultiplier += increaseIncomeAmount;
     StartCoroutine(StartCoolDown(coolDownImages[1], uibuttons[1], coolDownSpeeds[1]));
   }
 
   public void AddANewRoad()
   {
-    addANewRoad?.Invoke();
     EventManager.instance.ButtonAndCorrespondComponentAnim(uibuttons[2].transform, null, correspondTransforms[2], currentAmountText[2]);
     StartCoroutine(StartCoolDown(coolDownImages[2], uibuttons[2], coolDownSpeeds[2]));
   }
@@ -69,5 +63,6 @@ public class SelectSkills : MonoBehaviour
     correspondImage.enabled = false;
     correspondImage.fillAmount = 1;
     EventManager.instance.OnButtonCheckFunc();
+
   }
 }

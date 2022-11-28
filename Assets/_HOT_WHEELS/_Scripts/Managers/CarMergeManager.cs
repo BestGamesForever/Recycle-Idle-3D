@@ -16,34 +16,17 @@ public class CarMergeManager : CarMergeManagerBase
   public List<CarsLoopBehaviour> fourthCarInTheList;
   public MergePositions mergePositions;
   int counter = 3;
-  private void Start()
-  {
-    SelectSkills.addANewRoad += AddANewRoad;
-  }
 
 
-  private void OnDestroy()
-  {
-    SelectSkills.addANewRoad -= AddANewRoad;
-  }
-  private void AddANewRoad()
-  {
-    splineComputers[0].transform.parent.gameObject.SetActive(false);
-    splineComputers[1].transform.parent.gameObject.SetActive(true);
-    for (int i = 0; i < firstCarInTheList.Count; i++)
-    {
-      firstCarInTheList[i].GetComponent<SplineFollower>().spline = splineComputers[1];
-    }
-    for (int i = 0; i < secondCarInTheList.Count; i++)
-    {
-      secondCarInTheList[i].GetComponent<SplineFollower>().spline = splineComputers[1];
-    }
-  }
+
   public void MergeFirstCarsButton()
   {
     if (firstCarInTheList.Count >= counter)
     {
       MergeCarsWhenThree(firstCarInTheList, tempCars, mergePositions, 0, secondCarPrefab, secondCarInTheList, 0);
+      GameManager.Instance.secondCarListCount = secondCarInTheList.Count + 1;
+      Debug.Log($"secondCar  {GameManager.Instance.secondCarListCount}");
+      GameManager.Instance.firstCarListCount -= 3;
       MergeButtonCheck.CheckMergeButtonWhenReachThreeCars(secondCarInTheList.Count + 1);
     }
     if (firstCarInTheList.Count >= counter && firstCarInTheList.Count < counter)
@@ -56,20 +39,22 @@ public class CarMergeManager : CarMergeManagerBase
     base.MergeCarsWhenThree(CarInTheList, tempCars, mergePositions, index, nextCar, newCar, parentIndex);
   }
 
-
-
-  /*  public bool isRun;
-   void Update()
-   {
-     if (isRun)
-     {
-       for (int i = firstCarInTheList.Count - 3; i < firstCarInTheList.Count; i++)
-       {
-
-         firstCarInTheList[i].transform.DOLocalMove(mergePositions.postMergePositions[0], 1);
-       }
-     }
-   } */
+  public void ListCarsReferences()
+  {
+    int index = GameManager.Instance.addRoadButtonClicked;
+    for (int i = 0; i < firstCarInTheList.Count; i++)
+    {
+      firstCarInTheList[i].GetComponent<SplineFollower>().spline = splineComputers[index];
+    }
+    for (int i = 0; i < secondCarInTheList.Count; i++)
+    {
+      secondCarInTheList[i].GetComponent<SplineFollower>().spline = splineComputers[index];
+    }
+    for (int i = 0; i < thirdCarInTheList.Count; i++)
+    {
+      thirdCarInTheList[i].GetComponent<SplineFollower>().spline = splineComputers[index];
+    }
+  }
 }
 
 

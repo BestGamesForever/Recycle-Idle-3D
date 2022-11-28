@@ -27,7 +27,7 @@ public class PutChildInList : MonoBehaviour
     {
       imageColor[i] = showImageList[i].color;
       imageColorAlpha[i] = imageColor[i];
-      imageColorAlpha[i].a = 100;
+      imageColorAlpha[i].a = 150;
     }
     TextMeshProUGUI[] textchilds = GetComponentsInChildren<TextMeshProUGUI>();
     foreach (TextMeshProUGUI item in textchilds)
@@ -57,7 +57,7 @@ public class PutChildInList : MonoBehaviour
       }
       for (int i = 0; i < showTextist.Count; i++)
       {
-        showTextist[i].color = new Color32(255, 255, 255, 100);
+        showTextist[i].color = new Color32(255, 255, 255, 150);
       }
     }
   }

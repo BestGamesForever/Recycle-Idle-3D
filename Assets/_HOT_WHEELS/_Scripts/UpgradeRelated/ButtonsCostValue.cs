@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public enum Id
 {
@@ -25,6 +26,8 @@ public class ButtonsCostValue : MonoBehaviour
 
   public static bool isClicked;
   Button thisButton;
+  public static event Action addANewRoad = delegate { };
+  public static event Action addANewIncome = delegate { };
 
   void OnEnable()
   {
@@ -71,6 +74,7 @@ public class ButtonsCostValue : MonoBehaviour
       incomeCostText.text = incomeCots.ToString();
       GameManager.Instance.incomeButtonClicked = incomeButtonClicked;
       GameManager.Instance.incomeCots = (int)incomeCots;
+
     }
     if (id == Id.third)
     {
@@ -82,6 +86,7 @@ public class ButtonsCostValue : MonoBehaviour
       addRoadCostText.text = speedCost.ToString();
       GameManager.Instance.addRoadButtonClicked = addRoadButtonClicked;
       GameManager.Instance.newRoadCost = (int)speedCost;
+      addANewRoad?.Invoke();
     }
     if (id == Id.fourth)
     {
@@ -95,5 +100,6 @@ public class ButtonsCostValue : MonoBehaviour
       GameManager.Instance.mergeCost = (int)mergeCost;
     }
     EventManager.instance.OnButtonCheckFunc();
+    addANewIncome?.Invoke();
   }
 }

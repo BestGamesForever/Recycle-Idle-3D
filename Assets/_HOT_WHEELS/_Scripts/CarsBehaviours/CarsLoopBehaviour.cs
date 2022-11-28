@@ -48,9 +48,11 @@ public class CarsLoopBehaviour : BaseCarBehaviour
           break;
         case CarType.SecondCar:
           base.GiveMoney(20);
+          checkPoints.SpawnMoney();
           break;
         default:
           base.GiveMoney(0);
+          checkPoints.SpawnMoney();
           break;
       }
     }

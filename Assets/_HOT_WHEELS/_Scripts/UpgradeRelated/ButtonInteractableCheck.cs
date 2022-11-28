@@ -10,10 +10,17 @@ public class ButtonInteractableCheck : MonoBehaviour
   public PutChildInList secondButtonlistOfImagesAndTextMeshes;
   public PutChildInList thirdButtonlistOfImagesAndTextMeshes;
   public PutChildInList fourthButtonlistOfImagesAndTextMeshes;//MergeButton
+  Image[] greenSidesImage;
 
   private void OnEnable()
   {
+    greenSidesImage = new Image[skillButtons.Length];
+    for (int i = 0; i < skillButtons.Length; i++)
+    {
+      greenSidesImage[i] = skillButtons[i].transform.GetChild(0).GetComponent<Image>();
+    }
     EventManager.onButtonCheck += ButtonInteractableChecks;
+
   }
 
   private void Disable()
@@ -21,11 +28,13 @@ public class ButtonInteractableCheck : MonoBehaviour
     EventManager.onButtonCheck -= ButtonInteractableChecks;
   }
 
-  public Button[] skillButtons; //0 mana 1 talent 2 speed
+  public Button[] skillButtons; //
   int newCarCost;
   int incomeCost;
   int newRoadCost;
   int mergeCost;
+
+  int addIncomeClicked;
 
   void ButtonInteractableChecks()
   {
@@ -33,6 +42,7 @@ public class ButtonInteractableCheck : MonoBehaviour
     incomeCost = GameManager.Instance.incomeCots;
     newRoadCost = GameManager.Instance.newRoadCost;
     mergeCost = GameManager.Instance.mergeCost;
+    addIncomeClicked = GameManager.Instance.incomeButtonClicked;
     int totalcoin = GameManager.Instance.totalCoins;
 
     if (newCarCost > totalcoin)
@@ -40,6 +50,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       if (skillButtons[0] != null)
       {
         skillButtons[0].interactable = false;
+        greenSidesImage[0].enabled = false;
         firstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
 
       }
@@ -49,6 +60,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       if (skillButtons[0] != null)
       {
         skillButtons[0].interactable = true;
+        greenSidesImage[0].enabled = true;
         firstButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
 
       }
@@ -58,17 +70,23 @@ public class ButtonInteractableCheck : MonoBehaviour
       if (skillButtons[1] != null)
       {
         skillButtons[1].interactable = false;
+        greenSidesImage[1].enabled = false;
         secondButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
 
       }
     }
     else
     {
+      Debug.Log($"Pass  {gameObject}");
       if (skillButtons[1] != null)
       {
         skillButtons[1].interactable = true;
+        greenSidesImage[1].enabled = true;
         secondButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
-
+      }
+      if (addIncomeClicked == CheckPointsToFind.checkPointsAtStart.Count - 1)
+      {
+        AddIncomeReachMax();
       }
     }
     if (newRoadCost > totalcoin)
@@ -76,6 +94,7 @@ public class ButtonInteractableCheck : MonoBehaviour
       if (skillButtons[2] != null)
       {
         skillButtons[2].interactable = false;
+        greenSidesImage[2].enabled = false;
         thirdButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
 
       }
@@ -85,13 +104,32 @@ public class ButtonInteractableCheck : MonoBehaviour
       if (skillButtons[2] != null)
       {
         skillButtons[2].interactable = true;
+        greenSidesImage[2].enabled = true;
         thirdButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
 
       }
     }
     if (newRoadCost > totalcoin)
     {
-      MerheButtonInteractability();
+      if (skillButtons[3] != null)
+      {
+        {
+          skillButtons[3].interactable = false;
+          greenSidesImage[3].enabled = false;
+          fourthButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
+
+        }
+      }
+      else
+      {
+        if (skillButtons[3] != null)
+        {
+          skillButtons[3].interactable = true;
+          greenSidesImage[3].enabled = true;
+          fourthButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
+
+        }
+      }
     }
   }
 
@@ -109,24 +147,17 @@ public class ButtonInteractableCheck : MonoBehaviour
 
   }
 
-  void MerheButtonInteractability()
+  void ButtonInteractability()
   {
-    if (skillButtons[3] != null)
-    {
-      {
-        skillButtons[3].interactable = false;
-        fourthButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
 
-      }
-    }
-    else
-    {
-      if (skillButtons[3] != null)
-      {
-        skillButtons[3].interactable = true;
-        fourthButtonlistOfImagesAndTextMeshes.AlphaOnandOff(true);
+  }
 
-      }
-    }
+  public void AddIncomeReachMax()
+  {
+    Debug.Log($"PassNow  {gameObject}");
+    skillButtons[1].interactable = false;
+    greenSidesImage[1].enabled = false;
+    secondButtonlistOfImagesAndTextMeshes.AlphaOnandOff(false);
+
   }
 }
